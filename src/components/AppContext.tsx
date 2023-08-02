@@ -3,6 +3,7 @@ import { getAllLocalStorage } from "../services/storage"
 import { User } from "../model/User"
 
 interface IAppContext {
+    user: User,
     userName: string,
     isLoggedIn: boolean,
     setIsLoggedIn: (isLoggedIn: boolean) => void
@@ -27,7 +28,7 @@ export const AppContextProvider = ({ children }: any) => {
     }, [])
   
     return (
-      <AppContext.Provider value={{ userName: user.name || '', isLoggedIn, setIsLoggedIn, setUser }}>
+      <AppContext.Provider value={{ user , userName: user.name || '', isLoggedIn, setIsLoggedIn, setUser }}>
         { children }
       </AppContext.Provider>
     )
