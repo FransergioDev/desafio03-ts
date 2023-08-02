@@ -1,7 +1,9 @@
+import { User } from "../model/User"
 import { changeLocalStorage, createLocalStorage, getAllLocalStorage } from "./storage"
 
 const dioBank = {
-    login: false
+    login: false,
+    user: new User()
 }
 
 describe('storage', () => {

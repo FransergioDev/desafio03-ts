@@ -1,9 +1,13 @@
+import { User } from "../model/User";
+
 interface IDIoBank {
     login: boolean;
+    user?: User;
 }
 
 const dioBank = {
-    login: false
+    login: false,
+    user: new User()
 }
 
 export const getAllLocalStorage = (): string | null  => {
@@ -15,5 +19,6 @@ export const createLocalStorage = (): void => {
 }
 
 export const changeLocalStorage = (dioBank: IDIoBank): void => {
+    console.log("dioBank", dioBank);
     localStorage.setItem('diobank', JSON.stringify(dioBank))
 }

@@ -10,16 +10,19 @@ import { changeLocalStorage } from "../services/storage";
 const Home = () => {
     const [ email, setEmail ] = useState<string>('')
     const [ password, setPassword ] = useState<string>('')
-    const { setIsLoggedIn } = useContext(AppContext)
+    const { userName, isLoggedIn, setIsLoggedIn, setUser } = useContext(AppContext)
     const navigate = useNavigate()
 
+    if (isLoggedIn && userName.length > 0) navigate('/conta/1')
+
     const validateUser = async (email: string, password: string) => {
-        const loggedIn = await login(email, password)
+        const {loggedIn, user} = await login(email, password)
 
         if(!loggedIn) return alert('Email ou senha está inválido')
 
+        if (user !== null && user !== undefined) setUser(user)
         setIsLoggedIn(true)
-        changeLocalStorage({ login: true })
+        changeLocalStorage({ login: true, user})
         navigate('/conta/1')
     }
   
